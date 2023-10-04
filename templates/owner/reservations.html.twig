@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5" style="padding-top: 100px;">
+    <h2>Vos biens</h2>
+    <div class="row mt-4">
+        {% for bien in biens %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ bien.imagePath }}" class="card-img-top" alt="{{ bien.description }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ bien.description }}</h5>
+                        <p class="card-text">Capacité : {{ bien.nbrTraveller }} voyageurs</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="mt-5">Réservations pour vos biens</h2>
+
+    <table class="table mt-3">
+        <thead class="thead-dark">
+            <tr>
+                <th>Bien</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Locataire</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.getBien().getDescription() }}</td>
+                    <td>{{ reservation.getDateDebut()|date('d/m/Y') }}</td>
+                    <td>{{ reservation.getDateFin()|date('d/m/Y') }}</td>
+                    <td>{{ reservation.getUser().getFirstname() }} {{ reservation.getUser().getLastname() }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div style="padding-top: 100px;">
+    <h1 class="text-center">Liste des biens</h1>
+
+    <div class="container">
+        <div class="row">
+            {% for typeBien in typesBiens %}
+                {% set representativeBien = biens|filter(bien => bien.typeBien == typeBien)|first %}
+
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="{{ representativeBien.getImagePath() }}" class="card-img-top" alt="{{ representativeBien.getDescription() }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ representativeBien.getDescription() }}</h5>
+                            <p class="card-text">Capacité : {{ representativeBien.getNbrTraveller() }}</p>
+                            <a href="{{ path('app_reservation', {'bien_id': representativeBien.id}) }}" class="btn btn-primary btn-block">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+     <!-- Section pour la piscineee -->
+        <div class="row mt-5 mb-5">
+            <div class="col-md-4 offset-md-4">
+                <h2 class="text-center mb-4">Piscine du camping</h2>
+                <div class="card border shadow">
+                    <img src="{{ asset('images/pexels-photo-5746250.jpg') }}" class="card-img-top" alt="Piscine du camping">
+                    <div class="card-body">
+                        <h5 class="card-title">Tarifs accès piscine</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Accès piscine - Enfant : 1€</li>
+                            <li class="list-group-item">Accès piscine - Adulte : 1.50€</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

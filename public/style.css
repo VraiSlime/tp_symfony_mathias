@@ -1,0 +1,8 @@
+.my-custom-navbar {
+    z-index: 999;
+}
+ .card-img-top {
+    height: 250px;    
+    object-fit: cover; 
+}
+

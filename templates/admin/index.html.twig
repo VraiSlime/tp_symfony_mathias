@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ <div style="padding-top: 100px;"> 
+<div class="content">
+    <h1>Espace administratif</h1>
+    <ul>
+        <li><a href="{{ path('admin_reservations') }}">Réservations</a></li>
+        <li><a href="{{ path('admin_biens') }}">Gérer les biens</a></li>
+        <li><a href="{{ path('admin_facturations') }}">Facturations</a></li>
+    </ul>
+</div>
+</div>
+{% endblock %}

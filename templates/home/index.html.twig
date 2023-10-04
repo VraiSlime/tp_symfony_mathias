@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container-fluid px-0"> 
+    <div class="position-relative" style="height: 400px;">
+        <img class="img-fluid position-absolute w-100 h-100" src="/images/banniere.jpg" alt="bannière du site" style="object-fit: cover; top: 0; left: 0;"> 
+    </div>
+    <div class="p-3">
+        <h1 class="mt-2 text-center">l'espadrille volante</h1>
+        <p class="mt-2">L'inventaire du camping offre un aperçu varié des hébergements disponibles pour les campeurs. Le camping est doté de 50 mobile-homes, représentant l'essentiel des logements sur le site. Parmi ces mobile-homes, 30 d'entre eux sont la propriété de particuliers, ce qui traduit un fort taux d'occupation par des résidents habituels ou saisonniers. De plus, le camping propose 10 caravanes prêtes à accueillir les visiteurs en quête d'une expérience de camping plus traditionnelle. Enfin, pour ceux qui préfèrent planter leur propre tente ou garer leur camping-car, le camping dispose de 30 emplacements dédiés. Ces options variées assurent que le camping peut accueillir une grande variété de campeurs, qu'ils recherchent le confort d'un mobile-home ou l'authenticité d'une nuit sous une tente.</p>
+    </div>
+
+    <div class="container mt-5">
+       <div class="row">
+   {% for typeBien in typesBiens %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="{{ images[typeBien.id] }}" class="card-img-top" alt="{{ typeBien.label }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ typeBien.label }}</h5>
+                <p class="card-text">{{ typeBien.price }}€ par jour</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+        </div>
+    </div>
+{% if app.user and is_granted('ROLE_USER') %}
+            <li class="nav-item">
+				<a class="nav-link btn btn-primary" style="color: #000;" href="{{ path('biens_list') }}">Voir les biens</a>
+            </li>
+            {% endif %}
+{% endblock %}

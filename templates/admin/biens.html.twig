@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container" style="padding-top: 100px;">
+    <h1 class="text-center mb-4">Gestion des biens</h1>
+    <div class="mb-4">
+        <a href="{{ path('admin_bien_add') }}" class="btn btn-primary">Ajouter un bien</a>
+    </div>
+
+    <div class="row">
+        {% for bien in biens %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% set imagePath = bien.imagePath starts with '/images/' ? bien.imagePath[1:] : 'images/' ~ bien.imagePath %}
+                <img src="{{ asset(imagePath) }}" class="card-img-top" alt="Image du bien">
+                <div class="card-body">
+                    <h5 class="card-title">ID: {{ bien.id }}</h5>
+                    <p class="card-text">{{ bien.description }}</p>
+                    <p><strong>Nombre de voyageurs:</strong> {{ bien.nbrTraveller }}</p>
+                    <p><strong>Type:</strong> {{ bien.typeBien.label }}</p>
+                    <a href="{{ path('admin_bien_edit', {'id': bien.id}) }}" class="btn btn-warning">Modifier</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

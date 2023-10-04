@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container" style="padding-top: 100px;"> 
+    <h1 class="text-center mb-4">Liste des facturations</h1>
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nom du client</th>
+                <th>Email</th>
+                <th>Montant total</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Action</th> <!-- Pour le bouton "Annuler" -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for facturation in facturations %}
+                <tr>
+                    <td>{{ facturation.id }}</td>
+                    <td>{{ facturation.fisrtname }} {{ facturation.lastname }}</td> <!-- Faute de frappe avec "fisrtname" dans la base de donnée, du  coup on s'adapte comme on peut ^^ -->
+                    <td>{{ facturation.email }}</td>
+                    <td>{{ (facturation.prixTotal / 100)|number_format(2, ',', ' ') }} €</td>
+                    <td>{{ facturation.dateDebut|date('Y-m-d') }}</td>
+                    <td>{{ facturation.dateFin|date('Y-m-d') }}</td>
+                    <td>
+                        <a href="{{ path('app_annuler_facturation', { 'id': facturation.id }) }}" class="btn btn-danger">Annuler</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

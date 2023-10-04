@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container" style="padding-top: 100px;">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center">Réservation</h2>
+                <p>Prix du bien : {{ (bienPrice) | number_format(2, ',', ' ') }} €</p>
+
+
+                {{ form_start(reservationForm, {'attr': {'class': 'form'}}) }}
+                <div class="form-group">
+                    {{ form_row(reservationForm.dateDebut, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(reservationForm.dateFin, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(reservationForm.nbrAdult, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(reservationForm.nbrEnfant, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(reservationForm.nbrBaby, {'attr': {'class': 'form-control'}}) }}
+                </div>
+             
+                <button type="submit" class="btn btn-primary btn-block">Réserver</button>
+                {{ form_end(reservationForm) }}
+            {% if errorMessage %}
+    <div class="error-message">
+        {{ errorMessage }}
+    </div>
+            </div>
+{% endif %}
+        </div>
+    </div>
+{% endblock %}
