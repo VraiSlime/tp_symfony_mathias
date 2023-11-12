@@ -94,7 +94,7 @@ class ReservationController extends AbstractController
                     'errorMessage' => 'Tous les biens de ce type sont déjà réservés pour la période demandée.',
                 ]);
             }
-        
+            //Vérifie la date d'ouverture du camping en comparant avec la date de séjour demandé par le client
             $currentYear = $dateDebut->format('Y');
             $ouvertureDebut = new \DateTime("$currentYear-05-05");
             $ouvertureFin = new \DateTime("$currentYear-10-10");
@@ -115,6 +115,7 @@ class ReservationController extends AbstractController
                 'dateFin' => $dateFin
             ]);
 
+            //Vérife par rapport a si le bien à déjà réservé par la date demandé par le client
             if ($existingReservation) {
                 $this->addFlash('error', 'Une réservation pour ces dates existe déjà pour ce bien.');
                 return $this->render('reservation/index.html.twig', [
@@ -123,7 +124,7 @@ class ReservationController extends AbstractController
                     'errorMessage' => 'Une réservation pour ces dates existe déjà pour ce bien.',
                 ]);
             }
-
+            //Vérife pour voir si le nombre de personne correspond avec la capacité du bien
             if ($totalOccupants > $bien->getNbrTraveller()) {
                 $errorMessage = 'Le nombre total d\'occupants dépasse la capacité du bien.';
                 $this->addFlash('error', $errorMessage);

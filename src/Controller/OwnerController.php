@@ -29,7 +29,7 @@ public function ownerReservations(EntityManagerInterface $em)
 
     $reservations = [];
     foreach ($biens as $bien) {
-        // Pour chaque bien, récupérer ses réservations
+        // Pour chaque bien, récupére ses réservations
         $reservationsForBien = $bien->getReservations();
         foreach ($reservationsForBien as $reservation) {
             $reservations[] = $reservation;

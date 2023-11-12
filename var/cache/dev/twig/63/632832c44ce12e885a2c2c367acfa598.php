@@ -68,7 +68,7 @@ class __TwigTemplate_86942736620a6cc2ffcc09623eb1179c extends Template
         echo "<div class=\"container\" style=\"padding-top: 100px;\"> 
     <h1 class=\"text-center mb-4\">Liste des réservations</h1>
     <table class=\"table table-striped table-hover table-bordered\">
-        <thead class=\"thead-dark\"> <!-- ajout d'un fond sombre pour l'en-tête du tableau -->
+        <thead class=\"thead-dark\"> 
             <tr>
                 <th>ID</th>
                 <th>Date début</th>
@@ -144,7 +144,7 @@ class __TwigTemplate_86942736620a6cc2ffcc09623eb1179c extends Template
 <div class=\"container\" style=\"padding-top: 100px;\"> 
     <h1 class=\"text-center mb-4\">Liste des réservations</h1>
     <table class=\"table table-striped table-hover table-bordered\">
-        <thead class=\"thead-dark\"> <!-- ajout d'un fond sombre pour l'en-tête du tableau -->
+        <thead class=\"thead-dark\"> 
             <tr>
                 <th>ID</th>
                 <th>Date début</th>

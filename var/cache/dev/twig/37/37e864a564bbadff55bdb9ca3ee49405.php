@@ -96,7 +96,7 @@ class __TwigTemplate_d3dcf434939daad728752403f2726f14 extends Template
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["facturation"], "fisrtname", [], "any", false, false, false, 22), "html", null, true);
             echo " ";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["facturation"], "lastname", [], "any", false, false, false, 22), "html", null, true);
-            echo "</td> <!-- Faute de frappe avec \"fisrtname\" pris en compte -->
+            echo "</td> <!-- Faute de frappe avec \"fisrtname\" dans la base de donnée, du  coup on s'adapte comme on peut ^^ -->
                     <td>";
             // line 23
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["facturation"], "email", [], "any", false, false, false, 23), "html", null, true);
@@ -176,7 +176,7 @@ class __TwigTemplate_d3dcf434939daad728752403f2726f14 extends Template
             {% for facturation in facturations %}
                 <tr>
                     <td>{{ facturation.id }}</td>
-                    <td>{{ facturation.fisrtname }} {{ facturation.lastname }}</td> <!-- Faute de frappe avec \"fisrtname\" pris en compte -->
+                    <td>{{ facturation.fisrtname }} {{ facturation.lastname }}</td> <!-- Faute de frappe avec \"fisrtname\" dans la base de donnée, du  coup on s'adapte comme on peut ^^ -->
                     <td>{{ facturation.email }}</td>
                     <td>{{ (facturation.prixTotal / 100)|number_format(2, ',', ' ') }} €</td>
                     <td>{{ facturation.dateDebut|date('Y-m-d') }}</td>
