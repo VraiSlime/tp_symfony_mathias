@@ -124,9 +124,6 @@ public function annulerFacturation(int $id, EntityManagerInterface $em): Respons
         $this->addFlash('error', 'Facturation non trouvée.');
         return $this->redirectToRoute('admin_facturations');
     }
-
-    // Ici, vous pouvez effectuer des opérations supplémentaires si nécessaire
-    // par exemple, marquer la facturation comme annulée plutôt que de la supprimer.
     $em->remove($facturation);
     $em->flush();
 
