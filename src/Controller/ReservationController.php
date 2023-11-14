@@ -35,8 +35,6 @@ class ReservationController extends AbstractController
         $typeLabel = str_replace('caravane', 'Caravane', $typeLabel);
 
         list($type, $capacity) = explode('-', $typeLabel);
-        
-        // Corrige l'espacement dans "Mobile home"
         $type = str_replace('Mobile home', 'Mobile-home', $type);
 
         // 2. Utiliser "pers.", "places", ou "m²" en fonction du type de bien
@@ -144,22 +142,29 @@ class ReservationController extends AbstractController
         
             // Calcul pour la haute saison
             $currentYear = $dateDebut->format('Y');
-            $ouvertureDebut = new \DateTime("$currentYear-05-05");
-            $ouvertureFin = new \DateTime("$currentYear-10-10");
-
+            //j'initialise des objets datetime pour définir les dates d'ouverture et de fermeture du camping
+            $ouvertureDebut = (new \DateTime())->setDate($currentYear, 5, 5);
+            $ouvertureFin = (new \DateTime())->setDate($currentYear, 10, 10);   
+            //de même pour dates de la haute saison
             $hauteSaisonDebut = (new \DateTime())->setDate($currentYear, 6, 21);
             $hauteSaisonFin = (new \DateTime())->setDate($currentYear, 8, 31);
             dump($hauteSaisonDebut, $hauteSaisonFin);
 
-        
-            $joursHauteSaison = min($dateFin, $hauteSaisonFin)->diff(max($dateDebut, $hauteSaisonDebut))->days;
+            //calcul du nombre de jours de la haute saison de la réservation
+            if ($dateDebut > $hauteSaisonFin) {
+                $joursHauteSaison = 0;
+            } else {
+                $joursHauteSaison = min($dateFin, $hauteSaisonFin)->diff(max($dateDebut, $hauteSaisonDebut))->days;
+            }
+            //calcul du nombre de jours de la basse saison
             $joursBasseSaison = $jours - $joursHauteSaison;
-
             dump($joursHauteSaison, $joursBasseSaison);
             $prixBase = $taxe->getPrice();
             dump($prixBase);
         
+            //augmentation de 15% pendant la haute saison
             $prixTotal += ($prixBase + $prixBase * 0.15) * $joursHauteSaison;
+            //calcul pour la basse saison
             $prixTotal += $prixBase * $joursBasseSaison;
         
             // Réduction

@@ -112,9 +112,9 @@ class __TwigTemplate_0810f3a86239168603d9d050e5db45c5 extends Template
         // line 23
         echo "        </div>
 
-     <!-- Section for the pool card -->
+     <!-- Section pour la piscineee -->
         <div class=\"row mt-5 mb-5\">
-            <div class=\"col-md-4 offset-md-4\"> <!-- Centrage de la card sur la page -->
+            <div class=\"col-md-4 offset-md-4\">
                 <h2 class=\"text-center mb-4\">Piscine du camping</h2>
                 <div class=\"card border shadow\">
                     <img src=\"";
@@ -183,9 +183,9 @@ class __TwigTemplate_0810f3a86239168603d9d050e5db45c5 extends Template
             {% endfor %}
         </div>
 
-     <!-- Section for the pool card -->
+     <!-- Section pour la piscineee -->
         <div class=\"row mt-5 mb-5\">
-            <div class=\"col-md-4 offset-md-4\"> <!-- Centrage de la card sur la page -->
+            <div class=\"col-md-4 offset-md-4\">
                 <h2 class=\"text-center mb-4\">Piscine du camping</h2>
                 <div class=\"card border shadow\">
                     <img src=\"{{ asset('images/pexels-photo-5746250.jpg') }}\" class=\"card-img-top\" alt=\"Piscine du camping\">
